@@ -1,8 +1,8 @@
 export const products = [
     { id: 1, name: 'AirPods Pro 2', brand: 'Apple', category: 'Audio', price: 249, rating: 4.8 },
-    { id: 2, name: 'WH-1000XM5', brand: 'Sony', category: 'Audio', price: 399, rating: 4.7 },
+    { id: 2, name: 'WH-1000XM5 Headphones', brand: 'Sony', category: 'Audio', price: 399, rating: 4.7 },
     { id: 3, name: 'SoundLink Flex', brand: 'Bose', category: 'Audio', price: 149, rating: 4.6 },
-    { id: 4, name: 'HD 560S', brand: 'Sennheiser', category: 'Audio', price: 199, rating: 4.5 },
+    { id: 4, name: 'HD 560S Headphones', brand: 'Sennheiser', category: 'Audio', price: 199, rating: 4.5 },
     { id: 5, name: 'MacBook Air M3', brand: 'Apple', category: 'Laptops', price: 1099, rating: 4.9 },
     { id: 6, name: 'XPS 13', brand: 'Dell', category: 'Laptops', price: 999, rating: 4.4 },
     { id: 7, name: 'ThinkPad X1 Carbon', brand: 'Lenovo', category: 'Laptops', price: 1549, rating: 4.6 },
@@ -19,4 +19,5 @@ export const products = [
     { id: 18, name: '737 Power Bank', brand: 'Anker', category: 'Accessories', price: 109, rating: 4.5 },
     { id: 19, name: 'T7 Portable SSD 1TB', brand: 'Samsung', category: 'Accessories', price: 89, rating: 4.8 },
     { id: 20, name: 'UltraGear 27" Monitor', brand: 'LG', category: 'Accessories', price: 329, rating: 4.4 },
+    { id: 21, name: 'MacBook Pro 14"', brand: 'Apple', category: 'Laptops', price: 1999, rating: 4.9 },
 ];

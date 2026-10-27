@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { products } from '../data/products';
 
 const categories = [...new Set(products.map((p) => p.category))];
@@ -11,6 +11,8 @@ const currency = new Intl.NumberFormat('en-US', {
 
 export default function ProductDashboard() {
     const [searchParams, setSearchParams] = useSearchParams();
+
+    const { search } = useLocation();
 
     const query = searchParams.get('q') ?? '';
     const rawCategory = searchParams.get('category') ?? '';
@@ -102,7 +104,8 @@ export default function ProductDashboard() {
                 {filteredProducts.length > 0 ? (
                     <ul className="grid">
                         {filteredProducts.map((product) => (
-                            <li key={product.id} className="card">
+                            <li key={product.id}>
+                                <Link className="card" to={{ pathname: "/products/" + product.id, search }}>
                                 <div className="card-media" data-category={product.category}>
                                     <span>{product.brand.slice(0, 2).toUpperCase()}</span>
                                 </div>
@@ -115,6 +118,7 @@ export default function ProductDashboard() {
                                     <p className="brand">{product.brand}</p>
                                     <p className="price">{currency.format(product.price)}</p>
                                 </div>
+                                </Link>
                             </li>
                         ))}
                     </ul>

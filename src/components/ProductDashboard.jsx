@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom'
 import { products } from '../data/products';
 
 const categories = [...new Set(products.map((p) => p.category))];
@@ -17,17 +17,17 @@ export default function ProductDashboard() {
 
     const category = categories.includes(rawCategory) ? rawCategory : '';
 
-    const updateParams = (key, value, { replace = false } = {}) => {
+    const updateParam = (key, value, { replace = false } = {}) => {
         setSearchParams(
             (prev) => {
                 const next = new URLSearchParams(prev);
                 if (value) next.set(key, value);
                 else next.delete(key);
-                return next;
+                return next
             },
             { replace }
-        );
-    };
+        )
+    }
 
     const filteredProducts = products.filter((product) => {
         const term = query.toLowerCase();
@@ -48,7 +48,7 @@ export default function ProductDashboard() {
                 <div className="topbar-inner">
                     <div className="logo">
                         <span className="logo-mark">V</span>
-                        Voltix
+                        John Doe
                     </div>
                     <span className="topbar-tag">Consumer Electronics</span>
                 </div>
@@ -71,14 +71,14 @@ export default function ProductDashboard() {
                             placeholder="Search by name or brand"
                             aria-label="Search products"
                             value={query}
-                            onChange={(e) => updateParams('q', e.target.value, { replace: true })}
+                            onChange={(e) => updateParam('q', e.target.value, { replace: true })}
                         />
                     </div>
 
                     <select
                         aria-label="Filter by category"
                         value={category}
-                        onChange={(e) => updateParams('category', e.target.value)}
+                        onChange={(e) => updateParam('category', e.target.value)}
                     >
                         <option value="">All categories</option>
                         {categories.map((cat) => (

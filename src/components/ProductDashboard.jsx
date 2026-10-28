@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 import { products } from '../data/products';
 
 const categories = [...new Set(products.map((p) => p.category))];
@@ -10,24 +10,8 @@ const currency = new Intl.NumberFormat('en-US', {
 });
 
 export default function ProductDashboard() {
-    const [searchParams, setSearchParams] = useSearchParams();
-
-    const query = searchParams.get('q') ?? '';
-    const rawCategory = searchParams.get('category') ?? '';
-
-    const category = categories.includes(rawCategory) ? rawCategory : '';
-
-    const updateParams = (key, value, { replace = false } = {}) => {
-        setSearchParams(
-            (prev) => {
-                const next = new URLSearchParams(prev);
-                if (value) next.set(key, value);
-                else next.delete(key);
-                return next;
-            },
-            { replace }
-        );
-    };
+    const [query, setQuery] = useState('');
+    const [category, setCategory] = useState('');
 
     const filteredProducts = products.filter((product) => {
         const term = query.toLowerCase();
@@ -40,7 +24,10 @@ export default function ProductDashboard() {
 
     const hasFilters = query !== '' || category !== '';
 
-    const resetFilters = () => setSearchParams({});
+    const resetFilters = () => {
+        setQuery('');
+        setCategory('');
+    };
 
     return (
         <div className="app">
@@ -48,7 +35,7 @@ export default function ProductDashboard() {
                 <div className="topbar-inner">
                     <div className="logo">
                         <span className="logo-mark">V</span>
-                        Voltix
+                        John Doe
                     </div>
                     <span className="topbar-tag">Consumer Electronics</span>
                 </div>
@@ -71,14 +58,14 @@ export default function ProductDashboard() {
                             placeholder="Search by name or brand"
                             aria-label="Search products"
                             value={query}
-                            onChange={(e) => updateParams('q', e.target.value, { replace: true })}
+                            onChange={(e) => setQuery(e.target.value)}
                         />
                     </div>
 
                     <select
                         aria-label="Filter by category"
                         value={category}
-                        onChange={(e) => updateParams('category', e.target.value)}
+                        onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value="">All categories</option>
                         {categories.map((cat) => (
